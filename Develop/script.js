@@ -1,13 +1,13 @@
 $("#currentDay").text(moment().format('MMMM Do YYYY')); //o is the ordinal (nd)
 
-$(".saveBtn").on('click', function(){
-var time = $(this).parent().attr("id");//'this' refers to the event target (i.e. which button) that has been clicked
+$(".saveBtn").on('click', function(){ //jquery syntax for event listener
+var time = $(this).parent().attr("id");//'this' refers to the event target (i.e. which button) that has been clicked. this prevents having to do an event listener for each button with a different id.
 var desc = $(this).siblings(".description").val();
 localStorage.setItem(time, desc);
 
 });
 
-$("#9 .description").val(localStorage.getItem('9'));
+$("#9 .description").val(localStorage.getItem('9')); //code necessary to retrieve the data from the key and its corresponding contents
 $("#10 .description").val(localStorage.getItem('10'));
 $("#11 .description").val(localStorage.getItem('11'));
 $("#12 .description").val(localStorage.getItem('12'));
@@ -29,7 +29,7 @@ $(".time-block").each(function(){ //jquery syntax for a for loop
         $(this).removeClass("future");
         $(this).addClass("past"); 
     } else if (currentHour === blockHour){ //present
-        $(this).removeClass("past"); //order matters: wipe everything, and THEN add class, which triggers render of the dom
+        $(this).removeClass("past"); //order matters: wipe everything, and THEN add the new class, which triggers render of the dom
         $(this).removeClass("future");
         $(this).addClass("present");
     } else { //future
